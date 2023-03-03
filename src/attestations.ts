@@ -3,7 +3,10 @@ import { Attestation } from "../generated/schema"
 
 export function handleAttestationCreated(event: AttestationCreatedEvent): void {
   let attestation = new Attestation(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    event.transaction.hash
+      .toHex()
+      .concat('-')
+      .concat(event.logIndex.toString()),
   )
 
   attestation.creator = event.params.creator

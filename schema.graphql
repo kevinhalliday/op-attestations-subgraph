@@ -1,5 +1,5 @@
 type Attestation @entity(immutable: true) {
-  id: Bytes!
+  id: ID!
   creator: Bytes! # address
   about: Bytes! # address
   key: Bytes! # bytes32
