@@ -34,8 +34,7 @@ function createAttestationCreatedEvent(
   return attestationCreatedEvent
 }
 
-// Tests structure (matchstick-as >=0.5.0)
-// https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
+// TODO: add tests for counts and indices
 
 describe('Describe entity assertions', () => {
   afterAll(() => {
@@ -49,17 +48,13 @@ describe('Describe entity assertions', () => {
     let about = Address.fromString('0x0000000000000000000000000000000000000001')
     let key = Bytes.fromI32(1234567890)
     let val = Bytes.fromI32(1234567890)
-    let newAttestationCreatedEvent = createAttestationCreatedEvent(
-      creator,
-      about,
-      key,
-      val,
-    )
-    let id = newAttestationCreatedEvent.transaction.hash
-      .concatI32(newAttestationCreatedEvent.logIndex.toI32())
-      .toHexString()
+    let event = createAttestationCreatedEvent(creator, about, key, val)
+    let id = event.transaction.hash
+      .toHex()
+      .concat('-')
+      .concat(event.logIndex.toString())
 
-    handleAttestationCreated(newAttestationCreatedEvent)
+    handleAttestationCreated(event)
 
     assert.entityCount('Attestation', 1)
     assert.fieldEquals('Attestation', id, 'creator', creator.toHexString())
