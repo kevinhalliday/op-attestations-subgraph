@@ -7,4 +7,11 @@ type Attestation @entity(immutable: true) {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+  index: BigInt!
+}
+
+# only one. needed to track attestation indices
+type Global @entity {
+  id: ID!
+  count: BigInt!
 }
