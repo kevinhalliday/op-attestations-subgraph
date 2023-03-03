@@ -7,11 +7,20 @@ type Attestation @entity(immutable: true) {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+
+  # helps with pagination
+  # its messy but it works \o/
   index: BigInt!
+  indexForCreator: BigInt!
+  indexForAbout: BigInt!
+  indexForKey: BigInt!
+  indexForKeyAndCreator: BigInt!
+  indexForKeyAndAbout: BigInt!
 }
 
-# only one. needed to track attestation indices
-type Global @entity {
+# needed to track attestation indices & offer pagination
+# counts tracked globally, by key, by account, by account & key
+type Count @entity {
   id: ID!
   count: BigInt!
 }
