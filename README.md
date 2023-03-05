@@ -1,6 +1,6 @@
 # op-attestations-subgraph
 
-Subgraph for Optimism's Attestation Station
+Subgraph for Optimism's Attestation Station. Deployed with the Graph Protocol's hosted service [here](https://api.thegraph.com/subgraphs/name/kevinhalliday/op-attestations/).
 
 
 This subgraph just tracks AttestationCreated events from the AttestationStation.
